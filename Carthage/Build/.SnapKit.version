@@ -1,0 +1,10 @@
+{
+  "xcodeVersion" : "Xcode 8.2.1\nBuild version 8C1002",
+  "commitish" : "3.2.0",
+  "iOS" : [
+    {
+      "hash" : "c14cb65154ca2e57a4ce76ed1bb8b75b04a8b82b33f256538087f94a53501b1d",
+      "name" : "SnapKit"
+    }
+  ]
+}

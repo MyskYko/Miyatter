@@ -1,0 +1,14 @@
+{
+  "xcodeVersion" : "Xcode 8.2.1\nBuild version 8C1002",
+  "commitish" : "v2.6.2",
+  "iOS" : [
+    {
+      "hash" : "55bf7445149759e80643670c9db094a7f60c755df3203cb6dfc6b53e5cfc4e77",
+      "name" : "RealmSwift"
+    },
+    {
+      "hash" : "11cbbfba1da41f773d89c472771ff5262e7b9fb976572080d7a3a8b2cd91db52",
+      "name" : "Realm"
+    }
+  ]
+}
