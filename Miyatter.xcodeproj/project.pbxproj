@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		56FA77D61EAB28030087CB55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FA77D51EAB28030087CB55 /* AppDelegate.swift */; };
-		56FA77D81EAB28030087CB55 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FA77D71EAB28030087CB55 /* ViewController.swift */; };
+		56FA77D81EAB28030087CB55 /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FA77D71EAB28030087CB55 /* TimeLineViewController.swift */; };
 		56FA77DD1EAB28030087CB55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56FA77DC1EAB28030087CB55 /* Assets.xcassets */; };
 		56FA77E01EAB28030087CB55 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56FA77DE1EAB28030087CB55 /* LaunchScreen.storyboard */; };
-		56FA78071EAB33E80087CB55 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FA78061EAB33E80087CB55 /* Cell.swift */; };
+		56FA78071EAB33E80087CB55 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FA78061EAB33E80087CB55 /* TweetCell.swift */; };
 		56FA780A1EAB52010087CB55 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FA78091EAB52010087CB55 /* Realm.framework */; };
 		56FA780C1EAB52100087CB55 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FA780B1EAB52100087CB55 /* RealmSwift.framework */; };
 		56FA78161EAB52800087CB55 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FA78131EAB52800087CB55 /* SnapKit.framework */; };
@@ -22,6 +22,7 @@
 		56FA78211EAB609A0087CB55 /* RxBlocking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 56FA780F1EAB52670087CB55 /* RxBlocking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		56FA78241EAB610C0087CB55 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FA780D1EAB522D0087CB55 /* RxCocoa.framework */; };
 		56FA78251EAB610C0087CB55 /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 56FA780D1EAB522D0087CB55 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		56FA78281EADAC8D0087CB55 /* MakeTweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FA78271EADAC8D0087CB55 /* MakeTweetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,12 +45,12 @@
 /* Begin PBXFileReference section */
 		56FA77D21EAB28030087CB55 /* Miyatter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Miyatter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56FA77D51EAB28030087CB55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		56FA77D71EAB28030087CB55 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		56FA77D71EAB28030087CB55 /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
 		56FA77DC1EAB28030087CB55 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		56FA77DF1EAB28030087CB55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		56FA77E11EAB28030087CB55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56FA78051EAB330E0087CB55 /* Miyatter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Miyatter.entitlements; sourceTree = "<group>"; };
-		56FA78061EAB33E80087CB55 /* Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		56FA78061EAB33E80087CB55 /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		56FA78091EAB52010087CB55 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		56FA780B1EAB52100087CB55 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		56FA780D1EAB522D0087CB55 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
@@ -57,6 +58,7 @@
 		56FA78111EAB52800087CB55 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		56FA78121EAB52800087CB55 /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTest.framework; path = Carthage/Build/iOS/RxTest.framework; sourceTree = "<group>"; };
 		56FA78131EAB52800087CB55 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		56FA78271EADAC8D0087CB55 /* MakeTweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeTweetViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,13 +98,12 @@
 		56FA77D41EAB28030087CB55 /* Miyatter */ = {
 			isa = PBXGroup;
 			children = (
+				56FA78261EADAC330087CB55 /* View */,
 				56FA78051EAB330E0087CB55 /* Miyatter.entitlements */,
 				56FA77D51EAB28030087CB55 /* AppDelegate.swift */,
-				56FA77D71EAB28030087CB55 /* ViewController.swift */,
 				56FA77DC1EAB28030087CB55 /* Assets.xcassets */,
 				56FA77DE1EAB28030087CB55 /* LaunchScreen.storyboard */,
 				56FA77E11EAB28030087CB55 /* Info.plist */,
-				56FA78061EAB33E80087CB55 /* Cell.swift */,
 			);
 			path = Miyatter;
 			sourceTree = "<group>";
@@ -119,6 +120,16 @@
 				56FA78091EAB52010087CB55 /* Realm.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		56FA78261EADAC330087CB55 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				56FA78061EAB33E80087CB55 /* TweetCell.swift */,
+				56FA77D71EAB28030087CB55 /* TimeLineViewController.swift */,
+				56FA78271EADAC8D0087CB55 /* MakeTweetViewController.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,9 +229,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56FA77D81EAB28030087CB55 /* ViewController.swift in Sources */,
+				56FA77D81EAB28030087CB55 /* TimeLineViewController.swift in Sources */,
 				56FA77D61EAB28030087CB55 /* AppDelegate.swift in Sources */,
-				56FA78071EAB33E80087CB55 /* Cell.swift in Sources */,
+				56FA78281EADAC8D0087CB55 /* MakeTweetViewController.swift in Sources */,
+				56FA78071EAB33E80087CB55 /* TweetCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
