@@ -8,33 +8,40 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
-class TimeLineViewController: UIViewController, UITableViewDataSource {
+class TimeLineViewController: UIViewController {
+    
+    // MARK: - Properties -
+    
+    fileprivate let disposeBag = DisposeBag()
+    
     
     // MARK: - View -
     
-    private lazy var headerView: UIView = {
+    fileprivate lazy var headerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.lightGray
         return view
     }()
     
-    private lazy var tweetButton: UIButton = {
+    fileprivate lazy var tweetButton: UIButton = {
         let button = UIButton()
         button.setTitle("ツイート作成", for: .normal)
         button.titleLabel?.font = UIFont(name: "HiraKakuProN-W3", size: 20)
-        button.addTarget(self, action: #selector(tapTweetButton), for: .touchUpInside)
         return button
     }()
     
-    private lazy var tableView: UITableView = {
+    fileprivate lazy var tableView: UITableView = {
         let table = UITableView()
-        table.register(TweetCell.self, forCellReuseIdentifier: "tweetCell")
+        table.register(TweetCell.self, forCellReuseIdentifier: "TweetCell")
         table.dataSource = self
         table.estimatedRowHeight = 40
         table.rowHeight = UITableViewAutomaticDimension
         return table
     }()
+    
     
     // MARK: - Life Cycle Events -
     
@@ -43,23 +50,26 @@ class TimeLineViewController: UIViewController, UITableViewDataSource {
         
         setUpView()
         setLayout()
+        bindView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
+    
     // MARK: - Set Up Views -
     
-    private func setUpView() {
+    fileprivate func setUpView() {
         view.addSubview(headerView)
         headerView.addSubview(tweetButton)
         view.addSubview(tableView)
     }
     
+    
     // MARK: - Layout Views -
     
-    private func setLayout() {
+    fileprivate func setLayout() {
         headerView.snp.remakeConstraints { (make) in
             make.top.left.right.equalTo(view)
             make.height.equalTo(64)
@@ -77,7 +87,20 @@ class TimeLineViewController: UIViewController, UITableViewDataSource {
         }
     }
     
-    // MARK: - Table View -
+    
+    // MARK: - Bind -
+    
+    fileprivate func bindView() {
+        tweetButton.rx
+            .tap
+            .subscribe(onNext: { [weak self] in
+                self?.present(MakeTweetViewController(), animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+    }
+}
+
+extension TimeLineViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -88,17 +111,10 @@ class TimeLineViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell") as! TweetCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell") as! TweetCell
         cell.dateLabel.text = "2016/4/24"
         cell.contentLabel.text = "ツイートの内容"
         cell.commentCountLabel.text = "コメント数:0"
         return cell
     }
-    
-    // MARK: - View Transition -
-    
-    func tapTweetButton() {
-        self.present(MakeTweetViewController(), animated: true, completion: nil)
-    }
 }
-

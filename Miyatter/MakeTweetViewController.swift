@@ -7,40 +7,47 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class MakeTweetViewController: UIViewController {
     
+    // MARK: - Properties -
+    
+    fileprivate let disposeBag = DisposeBag()
+    
+    
     // MARK: - View -
     
-    private lazy var headerView: UIView = {
+    fileprivate lazy var headerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.lightGray
         return view
     }()
     
-    private lazy var tweetTextView: UITextView = {
+    fileprivate lazy var tweetTextView: UITextView = {
         let text = UITextView()
         text.layer.borderColor = UIColor.darkGray.cgColor
         text.layer.borderWidth = 1
-        text.textAlignment = NSTextAlignment.left
+        text.textAlignment = .left
         return text
     }()
     
-    private lazy var backButton: UIButton = {
+    fileprivate lazy var backButton: UIButton = {
         let button = UIButton()
         button.setTitle("戻る", for: .normal)
         button.titleLabel?.font = UIFont(name: "HiraKakuProN-W3", size: 20)
-        button.addTarget(self, action: #selector(tapBackButton), for: .touchUpInside)
         return button
     }()
     
-    private lazy var submitButton: UIButton = {
+    fileprivate lazy var submitButton: UIButton = {
         let button = UIButton()
         button.setTitle("投稿", for: .normal)
         button.titleLabel?.font = UIFont(name: "HiraKakuProN-W3", size: 20)
         button.backgroundColor = UIColor.lightGray
         return button
     }()
+    
     
     // MARK: - Life Cycle Events -
 
@@ -49,15 +56,17 @@ class MakeTweetViewController: UIViewController {
         
         setUpView()
         setLayout()
+        bindView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
+    
     // MARK: - Set Up Views -
 
-    private func setUpView() {
+    fileprivate func setUpView() {
         view.backgroundColor = UIColor.white
         view.addSubview(headerView)
         headerView.addSubview(backButton)
@@ -65,9 +74,10 @@ class MakeTweetViewController: UIViewController {
         view.addSubview(submitButton)
     }
     
+    
     // MARK: - Layout Views -
     
-    private func setLayout() {
+    fileprivate func setLayout() {
         headerView.snp.remakeConstraints { (make) in
             make.top.left.right.equalTo(view)
             make.height.equalTo(64)
@@ -92,10 +102,15 @@ class MakeTweetViewController: UIViewController {
         }
     }
     
-    // MARK: - View Transition -
     
-    func tapBackButton() {
-        self.dismiss(animated: true, completion: nil)
+    // MARK: - Bind -
+    
+    fileprivate func bindView() {
+        backButton.rx
+            .tap
+            .subscribe(onNext: { [unowned self] in
+                self.dismiss(animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
     }
-
 }

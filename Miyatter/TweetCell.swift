@@ -26,12 +26,14 @@ class TweetCell: UITableViewCell {
         label.lineBreakMode = .byCharWrapping
         return label
     }()
+    
     lazy var commentCountLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "HiraKakuProN-W3", size: 12)
         label.textAlignment = .right
         return label
     }()
+    
     
     // MARK: - Life Cycle Events -
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -45,17 +47,19 @@ class TweetCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    
     // MARK: - Set Up Views -
     
-    private func setUpView() {
+    fileprivate func setUpView() {
         self.addSubview(dateLabel)
         self.addSubview(contentLabel)
         self.addSubview(commentCountLabel)
     }
     
+    
     // MARK: - Layout Views -
     
-    private func setLayout() {
+    fileprivate func setLayout() {
         dateLabel.snp.remakeConstraints { (make) in
             make.top.equalTo(self).inset(8)
             make.left.right.equalTo(self).inset(20)
@@ -74,6 +78,5 @@ class TweetCell: UITableViewCell {
             make.height.equalTo(16)
         }
     }
-    
 }
 
