@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 import RxSwift
 import RxCocoa
 
@@ -15,6 +16,7 @@ class MakeTweetViewController: UIViewController {
     // MARK: - Properties -
     
     fileprivate let disposeBag = DisposeBag()
+    fileprivate let viewModel: MakeTweetViewModel
     
     
     // MARK: - View -
@@ -50,7 +52,17 @@ class MakeTweetViewController: UIViewController {
     
     
     // MARK: - Life Cycle Events -
-
+    
+    init(viewModel: MakeTweetViewModel) {
+        self.viewModel = viewModel
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -109,6 +121,14 @@ class MakeTweetViewController: UIViewController {
         backButton.rx
             .tap
             .subscribe(onNext: { [unowned self] in
+                self.dismiss(animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        submitButton.rx
+            .tap
+            .subscribe(onNext: { [unowned self] in
+                self.viewModel.submitTweet.onNext(self.tweetTextView.text)
                 self.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
