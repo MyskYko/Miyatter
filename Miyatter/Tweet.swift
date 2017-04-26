@@ -13,7 +13,7 @@ class Tweet: Object {
     dynamic var id = 0
     dynamic var date: NSDate?
     dynamic var content = ""
-    let comments = LinkingObjects(fromType: Comment.self, property: "tweet")
+    let comments = List<Comment>()
     
     override static func primaryKey() -> String? {
         return "id"

@@ -13,7 +13,6 @@ class Comment: Object {
     dynamic var id = 0
     dynamic var date: NSDate?
     dynamic var content = ""
-    dynamic var tweet: Tweet?
     
     override static func primaryKey() -> String? {
         return "id"

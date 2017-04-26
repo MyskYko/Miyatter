@@ -94,7 +94,7 @@ class TimeLineViewController: UIViewController {
         tweetButton.rx
             .tap
             .subscribe(onNext: { [weak self] in
-                self?.present(MakeTweetViewController(), animated: true, completion: nil)
+                self?.present(MakeTweetViewController(viewModel: MakeTweetViewModel()), animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
     }

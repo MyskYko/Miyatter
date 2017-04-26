@@ -1,5 +1,5 @@
 //
-//  TweetViewModel.swift
+//  MakeTweetViewModel.swift
 //  Miyatter
 //
 //  Created by miyasaka on 2017/04/26.
@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import RxSwift
 
-class TweetViewModel {
+final class MakeTweetViewModel {
     
     // MARK: - Properties -
 
@@ -28,10 +28,10 @@ class TweetViewModel {
         submitTweet
             .subscribe(onNext: { (text) in
                 let realm = try! Realm()
-                let tweet = Tweet()
-                tweet.content = text
-                tweet.date = NSDate()
                 try! realm.write() {
+                    let tweet = Tweet()
+                    tweet.content = text
+                    tweet.date = NSDate()
                     realm.add(tweet)
                 }
             })

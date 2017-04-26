@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		564535141EB051B200E2E2E0 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564535131EB051B200E2E2E0 /* Tweet.swift */; };
 		564535161EB051C100E2E2E0 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564535151EB051C100E2E2E0 /* Comment.swift */; };
-		56E400701EB0AD9A007130D6 /* TweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E4006F1EB0AD9A007130D6 /* TweetViewModel.swift */; };
+		56E400701EB0AD9A007130D6 /* MakeTweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E4006F1EB0AD9A007130D6 /* MakeTweetViewModel.swift */; };
 		56FA77D61EAB28030087CB55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FA77D51EAB28030087CB55 /* AppDelegate.swift */; };
 		56FA77D81EAB28030087CB55 /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FA77D71EAB28030087CB55 /* TimeLineViewController.swift */; };
 		56FA77DD1EAB28030087CB55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56FA77DC1EAB28030087CB55 /* Assets.xcassets */; };
@@ -48,10 +48,10 @@
 /* Begin PBXFileReference section */
 		564535131EB051B200E2E2E0 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		564535151EB051C100E2E2E0 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
-		56E4006F1EB0AD9A007130D6 /* TweetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetViewModel.swift; sourceTree = "<group>"; };
+		56E4006F1EB0AD9A007130D6 /* MakeTweetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MakeTweetViewModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		56FA77D21EAB28030087CB55 /* Miyatter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Miyatter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56FA77D51EAB28030087CB55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		56FA77D71EAB28030087CB55 /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
+		56FA77D71EAB28030087CB55 /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TimeLineViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		56FA77DC1EAB28030087CB55 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		56FA77DF1EAB28030087CB55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		56FA77E11EAB28030087CB55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 		56FA78111EAB52800087CB55 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		56FA78121EAB52800087CB55 /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTest.framework; path = Carthage/Build/iOS/RxTest.framework; sourceTree = "<group>"; };
 		56FA78131EAB52800087CB55 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
-		56FA78271EADAC8D0087CB55 /* MakeTweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeTweetViewController.swift; sourceTree = "<group>"; };
+		56FA78271EADAC8D0087CB55 /* MakeTweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MakeTweetViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +96,7 @@
 		56E4006E1EB0AC41007130D6 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
-				56E4006F1EB0AD9A007130D6 /* TweetViewModel.swift */,
+				56E4006F1EB0AD9A007130D6 /* MakeTweetViewModel.swift */,
 			);
 			name = "View Model";
 			sourceTree = "<group>";
@@ -255,7 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56FA77D81EAB28030087CB55 /* TimeLineViewController.swift in Sources */,
-				56E400701EB0AD9A007130D6 /* TweetViewModel.swift in Sources */,
+				56E400701EB0AD9A007130D6 /* MakeTweetViewModel.swift in Sources */,
 				564535161EB051C100E2E2E0 /* Comment.swift in Sources */,
 				564535141EB051B200E2E2E0 /* Tweet.swift in Sources */,
 				56FA77D61EAB28030087CB55 /* AppDelegate.swift in Sources */,
