@@ -16,7 +16,7 @@ class MakeTweetViewController: UIViewController {
     // MARK: - Properties -
     
     fileprivate let disposeBag = DisposeBag()
-    fileprivate let viewModel: MakeTweetViewModel?
+    fileprivate let viewModel: MakeTweetViewModel
     
     
     // MARK: - View -
@@ -128,7 +128,7 @@ class MakeTweetViewController: UIViewController {
         submitButton.rx
             .tap
             .subscribe(onNext: { [unowned self] in
-                self.viewModel?.submitTweet.onNext(self.tweetTextView.text)
+                self.viewModel.submitTweet.onNext(self.tweetTextView.text)
                 self.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)

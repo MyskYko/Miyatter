@@ -11,10 +11,14 @@ import RealmSwift
 
 class Comment: Object {
     dynamic var id = 0
-    dynamic var date: NSDate?
+    dynamic var date = Date()
     dynamic var content = ""
     
     override static func primaryKey() -> String? {
         return "id"
+    }
+    
+    override static func indexedProperties() -> [String] {
+        return ["id"]
     }
 }

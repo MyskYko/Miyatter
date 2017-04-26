@@ -31,7 +31,6 @@ final class MakeTweetViewModel {
                 try! realm.write() {
                     let tweet = Tweet()
                     tweet.content = text
-                    tweet.date = NSDate()
                     realm.add(tweet)
                 }
             })
