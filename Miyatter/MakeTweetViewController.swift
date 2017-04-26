@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 import RxSwift
 import RxCocoa
 
@@ -15,6 +16,7 @@ class MakeTweetViewController: UIViewController {
     // MARK: - Properties -
     
     fileprivate let disposeBag = DisposeBag()
+    fileprivate let viewModel = TweetViewModel()
     
     
     // MARK: - View -
@@ -109,6 +111,14 @@ class MakeTweetViewController: UIViewController {
         backButton.rx
             .tap
             .subscribe(onNext: { [unowned self] in
+                self.dismiss(animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        submitButton.rx
+            .tap
+            .subscribe(onNext: { [unowned self] in
+                self.viewModel.submitTweet.onNext(self.tweetTextView.text)
                 self.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
