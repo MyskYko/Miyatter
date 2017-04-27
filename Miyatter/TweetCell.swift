@@ -80,12 +80,12 @@ class TweetCell: UITableViewCell {
     }
     
     
-    // MARK: - Set Labels -
+    // MARK: - Update -
     
-    func setLabels(date: String, content: String, commentCount: String) {
-        dateLabel.text = date
-        contentLabel.text = content
-        commentCountLabel.text = commentCount
+    func update(tweet: Tweet) {
+        dateLabel.text = tweet.date.mediumString
+        contentLabel.text = tweet.content
+        commentCountLabel.text = "コメント数:\(tweet.comments.count)"
     }
 }
 

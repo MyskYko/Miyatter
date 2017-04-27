@@ -110,16 +110,8 @@ class TimeLineViewController: UIViewController {
         
         viewModel.tweetVariable.asObservable()
             .bind(to: tableView.rx.items(cellIdentifier: "TweetCell", cellType: TweetCell.self)) { index, tweet, cell in
-            cell.setLabels(date: self.stringFromDate(date: tweet.date), content: tweet.content, commentCount: "コメント数:\(tweet.comments.count)")
+                cell.update(tweet: tweet)
         }
         .disposed(by: disposeBag)
-    }
-    
-    fileprivate func stringFromDate(date: Date) -> String {
-        let formatter: DateFormatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ja_JP")
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .medium
-        return formatter.string(from: date)
     }
 }

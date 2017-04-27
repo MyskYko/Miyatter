@@ -14,7 +14,7 @@ final class TimeLineViewModel {
     
     // MARK: - Properties -
     
-    var tweetVariable: Variable<Results<Tweet> >
+    var tweetVariable: Variable<Results<Tweet>>
     
     
     // MARK: - Life Cycle Events -

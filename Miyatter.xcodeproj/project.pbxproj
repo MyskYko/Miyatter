@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		560A366B1EB1DD0300E4A33D /* TimeLineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560A366A1EB1DD0300E4A33D /* TimeLineViewModel.swift */; };
+		560A366E1EB219FD00E4A33D /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560A366D1EB219FD00E4A33D /* Date+Extension.swift */; };
 		564535141EB051B200E2E2E0 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564535131EB051B200E2E2E0 /* Tweet.swift */; };
 		564535161EB051C100E2E2E0 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564535151EB051C100E2E2E0 /* Comment.swift */; };
 		56E400701EB0AD9A007130D6 /* MakeTweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E4006F1EB0AD9A007130D6 /* MakeTweetViewModel.swift */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		560A366A1EB1DD0300E4A33D /* TimeLineViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineViewModel.swift; sourceTree = "<group>"; };
+		560A366D1EB219FD00E4A33D /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		564535131EB051B200E2E2E0 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		564535151EB051C100E2E2E0 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		56E4006F1EB0AD9A007130D6 /* MakeTweetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MakeTweetViewModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -86,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		560A366C1EB219D000E4A33D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				560A366D1EB219FD00E4A33D /* Date+Extension.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
 		564535121EB051A200E2E2E0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +134,7 @@
 		56FA77D41EAB28030087CB55 /* Miyatter */ = {
 			isa = PBXGroup;
 			children = (
+				560A366C1EB219D000E4A33D /* Extension */,
 				56E4006E1EB0AC41007130D6 /* View Model */,
 				564535121EB051A200E2E2E0 /* Model */,
 				56FA78261EADAC330087CB55 /* View */,
@@ -265,6 +276,7 @@
 				560A366B1EB1DD0300E4A33D /* TimeLineViewModel.swift in Sources */,
 				56FA78281EADAC8D0087CB55 /* MakeTweetViewController.swift in Sources */,
 				56FA78071EAB33E80087CB55 /* TweetCell.swift in Sources */,
+				560A366E1EB219FD00E4A33D /* Date+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
