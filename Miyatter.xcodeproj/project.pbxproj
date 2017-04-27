@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		560A366B1EB1DD0300E4A33D /* TimeLineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560A366A1EB1DD0300E4A33D /* TimeLineViewModel.swift */; };
 		564535141EB051B200E2E2E0 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564535131EB051B200E2E2E0 /* Tweet.swift */; };
 		564535161EB051C100E2E2E0 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564535151EB051C100E2E2E0 /* Comment.swift */; };
 		56E400701EB0AD9A007130D6 /* MakeTweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E4006F1EB0AD9A007130D6 /* MakeTweetViewModel.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		560A366A1EB1DD0300E4A33D /* TimeLineViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineViewModel.swift; sourceTree = "<group>"; };
 		564535131EB051B200E2E2E0 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		564535151EB051C100E2E2E0 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		56E4006F1EB0AD9A007130D6 /* MakeTweetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MakeTweetViewModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				56E4006F1EB0AD9A007130D6 /* MakeTweetViewModel.swift */,
+				560A366A1EB1DD0300E4A33D /* TimeLineViewModel.swift */,
 			);
 			name = "View Model";
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				564535161EB051C100E2E2E0 /* Comment.swift in Sources */,
 				564535141EB051B200E2E2E0 /* Tweet.swift in Sources */,
 				56FA77D61EAB28030087CB55 /* AppDelegate.swift in Sources */,
+				560A366B1EB1DD0300E4A33D /* TimeLineViewModel.swift in Sources */,
 				56FA78281EADAC8D0087CB55 /* MakeTweetViewController.swift in Sources */,
 				56FA78071EAB33E80087CB55 /* TweetCell.swift in Sources */,
 			);

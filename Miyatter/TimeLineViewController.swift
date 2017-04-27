@@ -15,6 +15,7 @@ class TimeLineViewController: UIViewController {
     
     // MARK: - Properties -
     
+    fileprivate let viewModel: TimeLineViewModel
     fileprivate let disposeBag = DisposeBag()
     
     
@@ -36,7 +37,6 @@ class TimeLineViewController: UIViewController {
     fileprivate lazy var tableView: UITableView = {
         let table = UITableView()
         table.register(TweetCell.self, forCellReuseIdentifier: "TweetCell")
-        table.dataSource = self
         table.estimatedRowHeight = 40
         table.rowHeight = UITableViewAutomaticDimension
         return table
@@ -44,6 +44,16 @@ class TimeLineViewController: UIViewController {
     
     
     // MARK: - Life Cycle Events -
+    
+    init(viewModel: TimeLineViewModel) {
+        self.viewModel = viewModel
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,24 +107,19 @@ class TimeLineViewController: UIViewController {
                 self?.present(MakeTweetViewController(viewModel: MakeTweetViewModel()), animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
-    }
-}
-
-extension TimeLineViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        
+        viewModel.tweetVariable.asObservable()
+            .bind(to: tableView.rx.items(cellIdentifier: "TweetCell", cellType: TweetCell.self)) { index, tweet, cell in
+            cell.setLabels(date: self.stringFromDate(date: tweet.date), content: tweet.content, commentCount: "コメント数:\(tweet.comments.count)")
+        }
+        .disposed(by: disposeBag)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell") as! TweetCell
-        cell.dateLabel.text = "2016/4/24"
-        cell.contentLabel.text = "ツイートの内容"
-        cell.commentCountLabel.text = "コメント数:0"
-        return cell
+    fileprivate func stringFromDate(date: Date) -> String {
+        let formatter: DateFormatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ja_JP")
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .medium
+        return formatter.string(from: date)
     }
 }
