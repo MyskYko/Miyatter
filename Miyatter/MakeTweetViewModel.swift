@@ -31,6 +31,7 @@ final class MakeTweetViewModel {
                 try! realm.write() {
                     let tweet = Tweet()
                     tweet.content = text
+                    tweet.setId()
                     realm.add(tweet)
                 }
             })

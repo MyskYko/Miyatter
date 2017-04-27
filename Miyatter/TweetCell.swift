@@ -12,14 +12,14 @@ class TweetCell: UITableViewCell {
     
     // MARK: - View -
     
-    lazy var dateLabel: UILabel = {
+    fileprivate lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "HiraKakuProN-W3", size: 12)
         label.textAlignment = .right
         return label
     }()
     
-    lazy var contentLabel: UILabel = {
+    fileprivate lazy var contentLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "HiraKakuProN-W3", size: 16)
         label.numberOfLines = 0
@@ -27,7 +27,7 @@ class TweetCell: UITableViewCell {
         return label
     }()
     
-    lazy var commentCountLabel: UILabel = {
+    fileprivate lazy var commentCountLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "HiraKakuProN-W3", size: 12)
         label.textAlignment = .right
@@ -77,6 +77,15 @@ class TweetCell: UITableViewCell {
             make.bottom.equalTo(self).inset(8)
             make.height.equalTo(16)
         }
+    }
+    
+    
+    // MARK: - Update -
+    
+    func update(tweet: Tweet) {
+        dateLabel.text = tweet.date.mediumString
+        contentLabel.text = tweet.content
+        commentCountLabel.text = "コメント数:\(tweet.comments.count)"
     }
 }
 
