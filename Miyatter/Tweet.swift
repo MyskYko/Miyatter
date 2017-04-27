@@ -22,4 +22,11 @@ class Tweet: Object {
     override static func indexedProperties() -> [String] {
         return ["id"]
     }
+    
+    func setId() {
+        let realm = try! Realm()
+        if let lastTweet = realm.objects(Tweet.self).sorted(byKeyPath: "id", ascending: true).last {
+            id = lastTweet.id + 1
+        }
+    }
 }
