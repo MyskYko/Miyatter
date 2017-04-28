@@ -1,21 +1,19 @@
 //
-//  ViewController.swift
+//  CommentViewController.swift
 //  Miyatter
 //
-//  Created by miyasaka on 2017/04/22.
+//  Created by miyasaka on 2017/04/28.
 //  Copyright © 2017年 miyacc. All rights reserved.
 //
 
 import UIKit
-import SnapKit
 import RxSwift
-import RxCocoa
 
-class TimeLineViewController: UIViewController {
+class CommentViewController: UIViewController {
     
     // MARK: - Properties -
     
-    fileprivate let viewModel: TimeLineViewModel
+    fileprivate let viewModel: CommentViewModel
     fileprivate let disposeBag = DisposeBag()
     
     
@@ -27,9 +25,16 @@ class TimeLineViewController: UIViewController {
         return view
     }()
     
-    fileprivate lazy var tweetButton: UIButton = {
+    fileprivate lazy var commentButton: UIButton = {
         let button = UIButton()
-        button.setTitle("ツイート作成", for: .normal)
+        button.setTitle("コメント作成", for: .normal)
+        button.titleLabel?.font = UIFont(name: "HiraKakuProN-W3", size: 20)
+        return button
+    }()
+    
+    fileprivate lazy var backButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("戻る", for: .normal)
         button.titleLabel?.font = UIFont(name: "HiraKakuProN-W3", size: 20)
         return button
     }()
@@ -45,7 +50,7 @@ class TimeLineViewController: UIViewController {
     
     // MARK: - Life Cycle Events -
     
-    init(viewModel: TimeLineViewModel) {
+    init(viewModel: CommentViewModel) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
@@ -54,10 +59,10 @@ class TimeLineViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setUpView()
         setLayout()
         bindView()
@@ -71,8 +76,10 @@ class TimeLineViewController: UIViewController {
     // MARK: - Set Up Views -
     
     fileprivate func setUpView() {
+        view.backgroundColor = UIColor.white
         view.addSubview(headerView)
-        headerView.addSubview(tweetButton)
+        headerView.addSubview(backButton)
+        view.addSubview(commentButton)
         view.addSubview(tableView)
     }
     
@@ -85,7 +92,13 @@ class TimeLineViewController: UIViewController {
             make.height.equalTo(64)
         }
         
-        tweetButton.snp.remakeConstraints { (make) in
+        backButton.snp.remakeConstraints { (make) in
+            make.top.equalTo(headerView).inset(32)
+            make.left.equalTo(headerView).inset(20)
+            make.height.equalTo(22)
+        }
+        
+        commentButton.snp.remakeConstraints { (make) in
             make.top.equalTo(headerView).inset(32)
             make.right.equalTo(headerView).inset(20)
             make.height.equalTo(22)
@@ -101,22 +114,11 @@ class TimeLineViewController: UIViewController {
     // MARK: - Bind -
     
     fileprivate func bindView() {
-        tweetButton.rx
+        backButton.rx
             .tap
-            .subscribe(onNext: { [weak self] in
-                self?.present(MakeTweetViewController(viewModel: MakeTweetViewModel()), animated: true, completion: nil)
+            .subscribe(onNext: { [unowned self] in
+                self.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
-        
-        viewModel.tweetVariable.asObservable()
-            .bind(to: tableView.rx.items(cellIdentifier: "TweetCell", cellType: TweetCell.self)) { index, tweet, cell in
-                cell.update(tweet: tweet)
-        }
-        .disposed(by: disposeBag)
-        
-        tableView.rx.itemSelected.subscribe(onNext: { [weak self] IndexPath in
-            self?.present(CommentViewController(viewModel: CommentViewModel()), animated: true, completion: nil)
-        })
-        .disposed(by: disposeBag)
     }
 }

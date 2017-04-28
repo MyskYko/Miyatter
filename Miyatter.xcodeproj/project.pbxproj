@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		560A366B1EB1DD0300E4A33D /* TimeLineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560A366A1EB1DD0300E4A33D /* TimeLineViewModel.swift */; };
 		560A366E1EB219FD00E4A33D /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560A366D1EB219FD00E4A33D /* Date+Extension.swift */; };
+		5628A9641EB3536D006FEE22 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5628A9631EB3536D006FEE22 /* CommentViewController.swift */; };
+		5628A9661EB35581006FEE22 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5628A9651EB35581006FEE22 /* CommentViewModel.swift */; };
 		564535141EB051B200E2E2E0 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564535131EB051B200E2E2E0 /* Tweet.swift */; };
 		564535161EB051C100E2E2E0 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564535151EB051C100E2E2E0 /* Comment.swift */; };
 		56E400701EB0AD9A007130D6 /* MakeTweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E4006F1EB0AD9A007130D6 /* MakeTweetViewModel.swift */; };
@@ -50,6 +52,8 @@
 /* Begin PBXFileReference section */
 		560A366A1EB1DD0300E4A33D /* TimeLineViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineViewModel.swift; sourceTree = "<group>"; };
 		560A366D1EB219FD00E4A33D /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		5628A9631EB3536D006FEE22 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		5628A9651EB35581006FEE22 /* CommentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
 		564535131EB051B200E2E2E0 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		564535151EB051C100E2E2E0 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		56E4006F1EB0AD9A007130D6 /* MakeTweetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MakeTweetViewModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -110,6 +114,7 @@
 			children = (
 				56E4006F1EB0AD9A007130D6 /* MakeTweetViewModel.swift */,
 				560A366A1EB1DD0300E4A33D /* TimeLineViewModel.swift */,
+				5628A9651EB35581006FEE22 /* CommentViewModel.swift */,
 			);
 			name = "View Model";
 			sourceTree = "<group>";
@@ -167,6 +172,7 @@
 				56FA78061EAB33E80087CB55 /* TweetCell.swift */,
 				56FA77D71EAB28030087CB55 /* TimeLineViewController.swift */,
 				56FA78271EADAC8D0087CB55 /* MakeTweetViewController.swift */,
+				5628A9631EB3536D006FEE22 /* CommentViewController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -268,10 +274,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5628A9641EB3536D006FEE22 /* CommentViewController.swift in Sources */,
 				56FA77D81EAB28030087CB55 /* TimeLineViewController.swift in Sources */,
 				56E400701EB0AD9A007130D6 /* MakeTweetViewModel.swift in Sources */,
 				564535161EB051C100E2E2E0 /* Comment.swift in Sources */,
 				564535141EB051B200E2E2E0 /* Tweet.swift in Sources */,
+				5628A9661EB35581006FEE22 /* CommentViewModel.swift in Sources */,
 				56FA77D61EAB28030087CB55 /* AppDelegate.swift in Sources */,
 				560A366B1EB1DD0300E4A33D /* TimeLineViewModel.swift in Sources */,
 				56FA78281EADAC8D0087CB55 /* MakeTweetViewController.swift in Sources */,

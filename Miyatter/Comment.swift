@@ -21,4 +21,11 @@ class Comment: Object {
     override static func indexedProperties() -> [String] {
         return ["id"]
     }
+    
+    func setId() {
+        let realm = try! Realm()
+        if let lastComment = realm.objects(Comment.self).sorted(byKeyPath: "id", ascending: true).last {
+            id = lastComment.id + 1
+        }
+    }
 }

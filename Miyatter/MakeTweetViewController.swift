@@ -44,7 +44,7 @@ class MakeTweetViewController: UIViewController {
     
     fileprivate lazy var submitButton: UIButton = {
         let button = UIButton()
-        button.setTitle("投稿", for: .normal)
+        button.setTitle("ツイート投稿", for: .normal)
         button.titleLabel?.font = UIFont(name: "HiraKakuProN-W3", size: 20)
         button.backgroundColor = UIColor.lightGray
         return button
