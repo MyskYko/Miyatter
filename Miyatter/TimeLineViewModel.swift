@@ -22,9 +22,14 @@ final class TimeLineViewModel {
     
     init() {
         let realm = try! Realm()
-        tweetVariable = Variable(realm.objects(Tweet.self).sorted(byKeyPath: "date", ascending: false))
-        token = realm.addNotificationBlock({ [weak self] note, realm in
-            self?.tweetVariable.value = realm.objects(Tweet.self).sorted(byKeyPath: "date", ascending: false)
+        let results = realm.objects(Tweet.self).sorted(byKeyPath: "date", ascending: false)
+        tweetVariable = Variable(results)
+        token = results.addNotificationBlock({ [weak self] (changes: RealmCollectionChange) in
+            self?.tweetVariable.value = results
         })
+    }
+    
+    deinit{
+        token?.stop()
     }
 }
