@@ -15,6 +15,7 @@ final class TimeLineViewModel {
     // MARK: - Properties -
     
     var tweetVariable: Variable<Results<Tweet>>
+    fileprivate var token: NotificationToken?
     
     
     // MARK: - Life Cycle Events -
@@ -22,5 +23,8 @@ final class TimeLineViewModel {
     init() {
         let realm = try! Realm()
         tweetVariable = Variable(realm.objects(Tweet.self).sorted(byKeyPath: "date", ascending: false))
+        token = realm.addNotificationBlock({ [weak self] note, realm in
+            self?.tweetVariable.value = realm.objects(Tweet.self).sorted(byKeyPath: "date", ascending: false)
+        })
     }
 }
