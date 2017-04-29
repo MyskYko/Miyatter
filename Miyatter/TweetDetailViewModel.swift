@@ -14,7 +14,7 @@ final class TweetDetailViewModel {
     
     // MARK: - Properties -
     
-    var commentingTweetVariable: Variable<Tweet>
+    var tweetVariable: Variable<Tweet>
     var commentingTweetToken: NotificationToken?
 
     
@@ -26,9 +26,9 @@ final class TweetDetailViewModel {
         guard let tweet = realm.object(ofType: Tweet.self, forPrimaryKey: tweetId) else {
             return nil
         }
-        commentingTweetVariable = Variable(tweet)
+        tweetVariable = Variable(tweet)
         commentingTweetToken = tweet.addNotificationBlock { [weak self] change in
-            self?.commentingTweetVariable.value = tweet
+            self?.tweetVariable.value = tweet
         }
     }
     
