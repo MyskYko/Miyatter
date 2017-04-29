@@ -119,7 +119,7 @@ class TweetDetailViewController: UIViewController {
         commentButton.rx
             .tap
             .subscribe(onNext: { [unowned self] in
-                let viewModel = CreateCommentViewModel(tweetId: self.viewModel.tweet.id)
+                let viewModel = CreateCommentViewModel(tweetId: self.viewModel.commentingTweetVariable.value.id)
                 self.present(
                     CreateCommentViewController(viewModel: viewModel),
                     animated: true,
@@ -133,6 +133,12 @@ class TweetDetailViewController: UIViewController {
                 self?.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
+        
+        viewModel.commentingTweetVariable.asObservable()
+            .subscribe(onNext: { [weak self] tweet in
+            self?.tableView.reloadData()
+        })
+        .disposed(by: disposeBag)
     }
 }
 
@@ -149,19 +155,19 @@ extension TweetDetailViewController: UITableViewDataSource {
                 return 1
         }
         else {
-            return viewModel.comments.count
+            return viewModel.commentingTweetVariable.value.comments.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell") as! TweetCell
-            cell.update(tweet: viewModel.tweet)
+            cell.update(tweet: viewModel.commentingTweetVariable.value)
             return cell
         }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as! CommentCell
-            cell.update(comment: viewModel.comments[indexPath.row])
+            cell.update(comment: viewModel.commentingTweetVariable.value.comments[indexPath.row])
             return cell
         }
     }
