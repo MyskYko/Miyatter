@@ -124,7 +124,6 @@ class TimeLineViewController: UIViewController {
                     animated: true,
                     completion: nil)
             }
-            
         })
         .disposed(by: disposeBag)
     }

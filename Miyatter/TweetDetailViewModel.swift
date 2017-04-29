@@ -14,8 +14,9 @@ final class TweetDetailViewModel {
     
     // MARK: - Properties -
     
-    let tweet: Tweet
-    let comments: List<Comment>
+    var tweetVariable: Variable<Tweet>
+    var commentingTweetToken: NotificationToken?
+
     
     
     // MARK: - Life Cycle Events -
@@ -25,7 +26,13 @@ final class TweetDetailViewModel {
         guard let tweet = realm.object(ofType: Tweet.self, forPrimaryKey: tweetId) else {
             return nil
         }
-        self.tweet = tweet
-        comments = tweet.comments
+        tweetVariable = Variable(tweet)
+        commentingTweetToken = tweet.addNotificationBlock { [weak self] change in
+            self?.tweetVariable.value = tweet
+        }
+    }
+    
+    deinit {
+        commentingTweetToken?.stop()
     }
 }
