@@ -11,7 +11,6 @@
 		560A366E1EB219FD00E4A33D /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560A366D1EB219FD00E4A33D /* Date+Extension.swift */; };
 		5628A9641EB3536D006FEE22 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5628A9631EB3536D006FEE22 /* CommentViewController.swift */; };
 		5628A9661EB35581006FEE22 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5628A9651EB35581006FEE22 /* CommentViewModel.swift */; };
-		5628A9681EB370EC006FEE22 /* CommentViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5628A9671EB370EC006FEE22 /* CommentViewDataSource.swift */; };
 		564535141EB051B200E2E2E0 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564535131EB051B200E2E2E0 /* Tweet.swift */; };
 		564535161EB051C100E2E2E0 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564535151EB051C100E2E2E0 /* Comment.swift */; };
 		566E9EED1EB456B1001746F9 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566E9EEC1EB456B1001746F9 /* CommentCell.swift */; };
@@ -58,7 +57,6 @@
 		560A366D1EB219FD00E4A33D /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		5628A9631EB3536D006FEE22 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		5628A9651EB35581006FEE22 /* CommentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
-		5628A9671EB370EC006FEE22 /* CommentViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewDataSource.swift; sourceTree = "<group>"; };
 		564535131EB051B200E2E2E0 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		564535151EB051C100E2E2E0 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		566E9EEC1EB456B1001746F9 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
@@ -148,7 +146,6 @@
 		56FA77D41EAB28030087CB55 /* Miyatter */ = {
 			isa = PBXGroup;
 			children = (
-				5628A9671EB370EC006FEE22 /* CommentViewDataSource.swift */,
 				560A366C1EB219D000E4A33D /* Extension */,
 				56E4006E1EB0AC41007130D6 /* View Model */,
 				564535121EB051A200E2E2E0 /* Model */,
@@ -296,7 +293,6 @@
 				564535141EB051B200E2E2E0 /* Tweet.swift in Sources */,
 				5628A9661EB35581006FEE22 /* CommentViewModel.swift in Sources */,
 				56FA77D61EAB28030087CB55 /* AppDelegate.swift in Sources */,
-				5628A9681EB370EC006FEE22 /* CommentViewDataSource.swift in Sources */,
 				560A366B1EB1DD0300E4A33D /* TimeLineViewModel.swift in Sources */,
 				56FA78281EADAC8D0087CB55 /* MakeTweetViewController.swift in Sources */,
 				56FA78071EAB33E80087CB55 /* TweetCell.swift in Sources */,
