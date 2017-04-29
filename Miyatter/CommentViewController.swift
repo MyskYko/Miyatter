@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class CommentViewController: UIViewController {
     
@@ -42,8 +43,10 @@ class CommentViewController: UIViewController {
     fileprivate lazy var tableView: UITableView = {
         let table = UITableView()
         table.register(TweetCell.self, forCellReuseIdentifier: "TweetCell")
+        table.register(CommentCell.self, forCellReuseIdentifier: "CommentCell")
         table.estimatedRowHeight = 40
         table.rowHeight = UITableViewAutomaticDimension
+        table.dataSource = self
         return table
     }()
     
@@ -120,5 +123,33 @@ class CommentViewController: UIViewController {
                 self.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
+    }
+}
+
+extension CommentViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        }
+        else {
+            return viewModel.comments.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell") as! TweetCell
+            cell.update(tweet: viewModel.tweet)
+            return cell
+        }
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as! CommentCell
+            cell.update(comment: viewModel.comments[indexPath.row])
+            return cell
+        }
     }
 }

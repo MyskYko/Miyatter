@@ -10,8 +10,22 @@ import Foundation
 import RealmSwift
 import RxSwift
 
+
+
 final class CommentViewModel {
     
+    // MARK: - Properties -
+    
+    var tweet: Tweet
+    var comments: List<Comment>
     
     
+    // MARK: - Life Cycle Events -
+    
+    init(selected: Tweet) {
+        tweet = selected
+                print(tweet)
+        
+        comments = tweet.comments
+    }
 }

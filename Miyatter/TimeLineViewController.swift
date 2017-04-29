@@ -108,14 +108,16 @@ class TimeLineViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        viewModel.tweetVariable.asObservable()
+        viewModel.tweetsVariable.asObservable()
             .bind(to: tableView.rx.items(cellIdentifier: "TweetCell", cellType: TweetCell.self)) { index, tweet, cell in
                 cell.update(tweet: tweet)
         }
         .disposed(by: disposeBag)
         
         tableView.rx.itemSelected.subscribe(onNext: { [weak self] IndexPath in
-            self?.present(CommentViewController(viewModel: CommentViewModel()), animated: true, completion: nil)
+            if let tweet = self?.viewModel.tweetsVariable.value[IndexPath.row] {
+                self?.present(CommentViewController(viewModel: CommentViewModel(selected: tweet)), animated: true, completion: nil)
+            }
         })
         .disposed(by: disposeBag)
     }
