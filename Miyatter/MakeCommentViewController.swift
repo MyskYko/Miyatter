@@ -7,29 +7,130 @@
 //
 
 import UIKit
+import SnapKit
+import RxSwift
+import RxCocoa
 
 class MakeCommentViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    // MARK: - Properties -
+    
+    fileprivate let disposeBag = DisposeBag()
+    fileprivate let viewModel: MakeCommentViewModel
+    
+    
+    // MARK: - View -
+    
+    fileprivate lazy var headerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.lightGray
+        return view
+    }()
+    
+    fileprivate lazy var commentTextView: UITextView = {
+        let text = UITextView()
+        text.layer.borderColor = UIColor.darkGray.cgColor
+        text.layer.borderWidth = 1
+        text.textAlignment = .left
+        return text
+    }()
+    
+    fileprivate lazy var backButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("戻る", for: .normal)
+        button.titleLabel?.font = UIFont(name: "HiraKakuProN-W3", size: 20)
+        return button
+    }()
+    
+    fileprivate lazy var submitButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("コメント投稿", for: .normal)
+        button.titleLabel?.font = UIFont(name: "HiraKakuProN-W3", size: 20)
+        button.backgroundColor = UIColor.lightGray
+        return button
+    }()
+    
+    
+    // MARK: - Life Cycle Events -
+    
+    init(viewModel: MakeCommentViewModel) {
+        self.viewModel = viewModel
+        
+        super.init(nibName: nil, bundle: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    */
-
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setUpView()
+        setLayout()
+        bindView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    
+    // MARK: - Set Up Views -
+    
+    fileprivate func setUpView() {
+        view.backgroundColor = UIColor.white
+        view.addSubview(headerView)
+        headerView.addSubview(backButton)
+        view.addSubview(commentTextView)
+        view.addSubview(submitButton)
+    }
+    
+    
+    // MARK: - Layout Views -
+    
+    fileprivate func setLayout() {
+        headerView.snp.remakeConstraints { (make) in
+            make.top.left.right.equalTo(view)
+            make.height.equalTo(64)
+        }
+        
+        backButton.snp.remakeConstraints { (make) in
+            make.top.equalTo(headerView).inset(32)
+            make.left.equalTo(headerView).inset(20)
+            make.height.equalTo(22)
+        }
+        
+        commentTextView.snp.remakeConstraints { (make) in
+            make.top.equalTo(headerView.snp.bottom).inset(-20)
+            make.left.right.equalTo(view).inset(16)
+            make.height.equalTo(200)
+        }
+        
+        submitButton.snp.remakeConstraints { (make) in
+            make.top.equalTo(commentTextView.snp.bottom).inset(-8)
+            make.left.right.equalTo(view).inset(16)
+            make.height.equalTo(32)
+        }
+    }
+    
+    
+    // MARK: - Bind -
+    
+    fileprivate func bindView() {
+        backButton.rx
+            .tap
+            .subscribe(onNext: { [unowned self] in
+                self.dismiss(animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        submitButton.rx
+            .tap
+            .subscribe(onNext: { [unowned self] in
+                self.viewModel.submitComment.onNext(self.commentTextView.text)
+                self.dismiss(animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+    }
 }

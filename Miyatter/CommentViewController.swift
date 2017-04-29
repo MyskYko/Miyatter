@@ -117,6 +117,18 @@ class CommentViewController: UIViewController {
     // MARK: - Bind -
     
     fileprivate func bindView() {
+        commentButton.rx
+            .tap
+            .subscribe(onNext: { [weak self] in
+                if let tweet = self?.viewModel.tweet {
+                    self?.present(MakeCommentViewController(viewModel: MakeCommentViewModel(selected: tweet)), animated: true, completion: nil)
+                }
+                else {
+                    self?.dismiss(animated: true, completion: nil)
+                }
+            })
+            .disposed(by: disposeBag)
+        
         backButton.rx
             .tap
             .subscribe(onNext: { [unowned self] in
@@ -125,6 +137,9 @@ class CommentViewController: UIViewController {
             .disposed(by: disposeBag)
     }
 }
+
+
+//tableView
 
 extension CommentViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {

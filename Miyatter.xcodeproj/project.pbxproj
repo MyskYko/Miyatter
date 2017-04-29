@@ -16,6 +16,7 @@
 		564535161EB051C100E2E2E0 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564535151EB051C100E2E2E0 /* Comment.swift */; };
 		566E9EED1EB456B1001746F9 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566E9EEC1EB456B1001746F9 /* CommentCell.swift */; };
 		566E9EEF1EB458DA001746F9 /* MakeCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566E9EEE1EB458DA001746F9 /* MakeCommentViewController.swift */; };
+		566E9EF11EB459B3001746F9 /* MakeCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566E9EF01EB459B3001746F9 /* MakeCommentViewModel.swift */; };
 		56E400701EB0AD9A007130D6 /* MakeTweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E4006F1EB0AD9A007130D6 /* MakeTweetViewModel.swift */; };
 		56FA77D61EAB28030087CB55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FA77D51EAB28030087CB55 /* AppDelegate.swift */; };
 		56FA77D81EAB28030087CB55 /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FA77D71EAB28030087CB55 /* TimeLineViewController.swift */; };
@@ -62,6 +63,7 @@
 		564535151EB051C100E2E2E0 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		566E9EEC1EB456B1001746F9 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		566E9EEE1EB458DA001746F9 /* MakeCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeCommentViewController.swift; sourceTree = "<group>"; };
+		566E9EF01EB459B3001746F9 /* MakeCommentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeCommentViewModel.swift; sourceTree = "<group>"; };
 		56E4006F1EB0AD9A007130D6 /* MakeTweetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MakeTweetViewModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		56FA77D21EAB28030087CB55 /* Miyatter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Miyatter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56FA77D51EAB28030087CB55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				56E4006F1EB0AD9A007130D6 /* MakeTweetViewModel.swift */,
 				560A366A1EB1DD0300E4A33D /* TimeLineViewModel.swift */,
 				5628A9651EB35581006FEE22 /* CommentViewModel.swift */,
+				566E9EF01EB459B3001746F9 /* MakeCommentViewModel.swift */,
 			);
 			name = "View Model";
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				566E9EF11EB459B3001746F9 /* MakeCommentViewModel.swift in Sources */,
 				566E9EED1EB456B1001746F9 /* CommentCell.swift in Sources */,
 				5628A9641EB3536D006FEE22 /* CommentViewController.swift in Sources */,
 				56FA77D81EAB28030087CB55 /* TimeLineViewController.swift in Sources */,

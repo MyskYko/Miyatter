@@ -61,6 +61,7 @@ class CommentCell: UITableViewCell {
         contentLabel.snp.remakeConstraints { (make) in
             make.top.equalTo(dateLabel.snp.bottom).inset(-8)
             make.left.right.equalTo(self).inset(12)
+            make.bottom.equalTo(self).inset(16)
         }
     }
     
