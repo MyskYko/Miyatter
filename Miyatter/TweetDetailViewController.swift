@@ -1,5 +1,5 @@
 //
-//  CommentViewController.swift
+//  TweetDetailViewController.swift
 //  Miyatter
 //
 //  Created by miyasaka on 2017/04/28.
@@ -8,13 +8,12 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
 
-class CommentViewController: UIViewController {
+class TweetDetailViewController: UIViewController {
     
     // MARK: - Properties -
     
-    fileprivate let viewModel: CommentViewModel
+    fileprivate let viewModel: TweetDetailViewModel
     fileprivate let disposeBag = DisposeBag()
     
     
@@ -53,7 +52,7 @@ class CommentViewController: UIViewController {
     
     // MARK: - Life Cycle Events -
     
-    init(viewModel: CommentViewModel) {
+    init(viewModel: TweetDetailViewModel) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
@@ -119,36 +118,44 @@ class CommentViewController: UIViewController {
     fileprivate func bindView() {
         commentButton.rx
             .tap
-            .subscribe(onNext: { [weak self] in
-                if let tweet = self?.viewModel.tweet {
-                    self?.present(MakeCommentViewController(viewModel: MakeCommentViewModel(selected: tweet)), animated: true, completion: nil)
+            .subscribe(onNext: { [unowned self] in
+                if let tweet = self.viewModel.tweet {
+                    let viewModel = CreateCommentViewModel(tweetId: tweet.id)
+                    self.present(CreateCommentViewController(viewModel: viewModel),
+                                  animated: true,
+                                  completion: nil)
                 }
                 else {
-                    self?.dismiss(animated: true, completion: nil)
+                    self.dismiss(animated: true, completion: nil)
                 }
             })
             .disposed(by: disposeBag)
         
         backButton.rx
             .tap
-            .subscribe(onNext: { [unowned self] in
-                self.dismiss(animated: true, completion: nil)
+            .subscribe(onNext: { [weak self] in
+                self?.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
     }
 }
 
 
-//tableView
+//MARK: - TableViewDataSource -
 
-extension CommentViewController: UITableViewDataSource {
+extension TweetDetailViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 1
+            if viewModel.tweet != nil {
+                return 1
+            }
+            else {
+                return 0
+            }
         }
         else {
             return viewModel.comments.count

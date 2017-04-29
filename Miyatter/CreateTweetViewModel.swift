@@ -1,5 +1,5 @@
 //
-//  MakeTweetViewModel.swift
+//  CreateTweetViewModel.swift
 //  Miyatter
 //
 //  Created by miyasaka on 2017/04/26.
@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import RxSwift
 
-final class MakeTweetViewModel {
+final class CreateTweetViewModel {
     
     // MARK: - Properties -
 

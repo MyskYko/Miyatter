@@ -23,7 +23,6 @@ class CommentCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont(name: "HiraKakuProN-W3", size: 16)
         label.numberOfLines = 0
-        label.lineBreakMode = .byCharWrapping
         return label
     }()
     
@@ -44,8 +43,8 @@ class CommentCell: UITableViewCell {
     // MARK: - Set Up Views -
     
     fileprivate func setUpView() {
-        self.addSubview(dateLabel)
-        self.addSubview(contentLabel)
+        addSubview(dateLabel)
+        addSubview(contentLabel)
     }
     
     
@@ -55,7 +54,6 @@ class CommentCell: UITableViewCell {
         dateLabel.snp.remakeConstraints { (make) in
             make.top.equalTo(self).inset(8)
             make.left.right.equalTo(self).inset(20)
-            make.height.equalTo(16)
         }
         
         contentLabel.snp.remakeConstraints { (make) in

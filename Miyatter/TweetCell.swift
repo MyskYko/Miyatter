@@ -23,7 +23,6 @@ class TweetCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont(name: "HiraKakuProN-W3", size: 16)
         label.numberOfLines = 0
-        label.lineBreakMode = .byCharWrapping
         return label
     }()
     
@@ -51,9 +50,9 @@ class TweetCell: UITableViewCell {
     // MARK: - Set Up Views -
     
     fileprivate func setUpView() {
-        self.addSubview(dateLabel)
-        self.addSubview(contentLabel)
-        self.addSubview(commentCountLabel)
+        addSubview(dateLabel)
+        addSubview(contentLabel)
+        addSubview(commentCountLabel)
     }
     
     
@@ -63,7 +62,6 @@ class TweetCell: UITableViewCell {
         dateLabel.snp.remakeConstraints { (make) in
             make.top.equalTo(self).inset(8)
             make.left.right.equalTo(self).inset(20)
-            make.height.equalTo(16)
         }
         
         contentLabel.snp.remakeConstraints { (make) in
@@ -75,7 +73,6 @@ class TweetCell: UITableViewCell {
             make.top.equalTo(contentLabel.snp.bottom).inset(-8)
             make.left.right.equalTo(self).inset(20)
             make.bottom.equalTo(self).inset(8)
-            make.height.equalTo(16)
         }
     }
     

@@ -1,22 +1,21 @@
 //
-//  MakeCommentViewController.swift
+//  CreateTweetViewController.swift
 //  Miyatter
 //
-//  Created by miyasaka on 2017/04/29.
+//  Created by miyasaka on 2017/04/24.
 //  Copyright © 2017年 miyacc. All rights reserved.
 //
 
 import UIKit
 import SnapKit
 import RxSwift
-import RxCocoa
 
-class MakeCommentViewController: UIViewController {
+class CreateTweetViewController: UIViewController {
     
     // MARK: - Properties -
     
     fileprivate let disposeBag = DisposeBag()
-    fileprivate let viewModel: MakeCommentViewModel
+    fileprivate let viewModel: CreateTweetViewModel
     
     
     // MARK: - View -
@@ -27,7 +26,7 @@ class MakeCommentViewController: UIViewController {
         return view
     }()
     
-    fileprivate lazy var commentTextView: UITextView = {
+    fileprivate lazy var tweetTextView: UITextView = {
         let text = UITextView()
         text.layer.borderColor = UIColor.darkGray.cgColor
         text.layer.borderWidth = 1
@@ -44,7 +43,7 @@ class MakeCommentViewController: UIViewController {
     
     fileprivate lazy var submitButton: UIButton = {
         let button = UIButton()
-        button.setTitle("コメント投稿", for: .normal)
+        button.setTitle("ツイート投稿", for: .normal)
         button.titleLabel?.font = UIFont(name: "HiraKakuProN-W3", size: 20)
         button.backgroundColor = UIColor.lightGray
         return button
@@ -53,7 +52,7 @@ class MakeCommentViewController: UIViewController {
     
     // MARK: - Life Cycle Events -
     
-    init(viewModel: MakeCommentViewModel) {
+    init(viewModel: CreateTweetViewModel) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
@@ -77,12 +76,12 @@ class MakeCommentViewController: UIViewController {
     
     
     // MARK: - Set Up Views -
-    
+
     fileprivate func setUpView() {
         view.backgroundColor = UIColor.white
         view.addSubview(headerView)
         headerView.addSubview(backButton)
-        view.addSubview(commentTextView)
+        view.addSubview(tweetTextView)
         view.addSubview(submitButton)
     }
     
@@ -101,14 +100,14 @@ class MakeCommentViewController: UIViewController {
             make.height.equalTo(22)
         }
         
-        commentTextView.snp.remakeConstraints { (make) in
+        tweetTextView.snp.remakeConstraints { (make) in
             make.top.equalTo(headerView.snp.bottom).inset(-20)
             make.left.right.equalTo(view).inset(16)
             make.height.equalTo(200)
         }
         
         submitButton.snp.remakeConstraints { (make) in
-            make.top.equalTo(commentTextView.snp.bottom).inset(-8)
+            make.top.equalTo(tweetTextView.snp.bottom).inset(-8)
             make.left.right.equalTo(view).inset(16)
             make.height.equalTo(32)
         }
@@ -120,15 +119,15 @@ class MakeCommentViewController: UIViewController {
     fileprivate func bindView() {
         backButton.rx
             .tap
-            .subscribe(onNext: { [unowned self] in
-                self.dismiss(animated: true, completion: nil)
+            .subscribe(onNext: { [weak self] in
+                self?.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
         
         submitButton.rx
             .tap
             .subscribe(onNext: { [unowned self] in
-                self.viewModel.submitComment.onNext(self.commentTextView.text)
+                self.viewModel.submitTweet.onNext(self.tweetTextView.text)
                 self.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)

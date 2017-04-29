@@ -22,6 +22,7 @@ class Comment: Object {
         return ["id"]
     }
     
+    /// call in write transaction
     func setId() {
         let realm = try! Realm()
         if let lastComment = realm.objects(Comment.self).sorted(byKeyPath: "id", ascending: true).last {

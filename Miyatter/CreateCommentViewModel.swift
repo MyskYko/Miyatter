@@ -1,5 +1,5 @@
 //
-//  MakeCommentViewModel.swift
+//  CreateCommentViewModel.swift
 //  Miyatter
 //
 //  Created by miyasaka on 2017/04/29.
@@ -10,11 +10,10 @@ import Foundation
 import RealmSwift
 import RxSwift
 
-final class MakeCommentViewModel {
+final class CreateCommentViewModel {
     // MARK: - Properties -
     
     fileprivate let disposeBag = DisposeBag()
-    fileprivate let tweet: Tweet
     
     
     // MARK: - Inputs -
@@ -24,8 +23,7 @@ final class MakeCommentViewModel {
     
     // MARK: - Initializers -
     
-    init(selected: Tweet) {
-        tweet = selected
+    init(tweetId: Int) {
         submitComment
             .subscribe(onNext: { (text) in
                 let realm = try! Realm()
@@ -33,8 +31,13 @@ final class MakeCommentViewModel {
                     let comment = Comment()
                     comment.content = text
                     comment.setId()
-                    self.tweet.comments.append(comment)
-                    realm.add(comment)
+                    if let tweet = realm.object(ofType: Tweet.self, forPrimaryKey: tweetId) {
+                        tweet.comments.append(comment)
+                        realm.add(comment)
+                    }
+                    else {
+                        //error
+                    }
                 }
             })
             .disposed(by: disposeBag)
