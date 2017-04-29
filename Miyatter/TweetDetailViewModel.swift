@@ -14,22 +14,18 @@ final class TweetDetailViewModel {
     
     // MARK: - Properties -
     
-    let tweet: Tweet!
+    let tweet: Tweet
     let comments: List<Comment>
     
     
     // MARK: - Life Cycle Events -
     
-    init(tweetId: Int) {
+    init?(tweetId: Int) {
         let realm = try! Realm()
-        if let tweet = realm.object(ofType: Tweet.self, forPrimaryKey: tweetId) {
-            self.tweet = tweet
-            comments = tweet.comments
+        guard let tweet = realm.object(ofType: Tweet.self, forPrimaryKey: tweetId) else {
+            return nil
         }
-        else {
-            //error
-            self.tweet = nil
-            self.comments = List<Comment>()
-        }
+        self.tweet = tweet
+        comments = tweet.comments
     }
 }

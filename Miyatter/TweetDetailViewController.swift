@@ -119,15 +119,11 @@ class TweetDetailViewController: UIViewController {
         commentButton.rx
             .tap
             .subscribe(onNext: { [unowned self] in
-                if let tweet = self.viewModel.tweet {
-                    let viewModel = CreateCommentViewModel(tweetId: tweet.id)
-                    self.present(CreateCommentViewController(viewModel: viewModel),
-                                  animated: true,
-                                  completion: nil)
-                }
-                else {
-                    self.dismiss(animated: true, completion: nil)
-                }
+                let viewModel = CreateCommentViewModel(tweetId: self.viewModel.tweet.id)
+                self.present(
+                    CreateCommentViewController(viewModel: viewModel),
+                    animated: true,
+                    completion: nil)
             })
             .disposed(by: disposeBag)
         
@@ -141,7 +137,7 @@ class TweetDetailViewController: UIViewController {
 }
 
 
-//MARK: - TableViewDataSource -
+// MARK: - TableViewDataSource -
 
 extension TweetDetailViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -150,12 +146,7 @@ extension TweetDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            if viewModel.tweet != nil {
                 return 1
-            }
-            else {
-                return 0
-            }
         }
         else {
             return viewModel.comments.count

@@ -103,9 +103,10 @@ class TimeLineViewController: UIViewController {
         tweetButton.rx
             .tap
             .subscribe(onNext: { [unowned self] in
-                self.present(CreateTweetViewController(viewModel: CreateTweetViewModel()),
-                             animated: true,
-                             completion: nil)
+                self.present(
+                    CreateTweetViewController(viewModel: CreateTweetViewModel()),
+                    animated: true,
+                    completion: nil)
             })
             .disposed(by: disposeBag)
         
@@ -117,10 +118,12 @@ class TimeLineViewController: UIViewController {
         
         tableView.rx.itemSelected.subscribe(onNext: { [unowned self] IndexPath in
             let tweet = self.viewModel.tweetsVariable.value[IndexPath.row]
-            let viewModel = TweetDetailViewModel(tweetId: tweet.id)
-            self.present(TweetDetailViewController(viewModel: viewModel),
-                              animated: true,
-                              completion: nil)
+            if let viewModel = TweetDetailViewModel(tweetId: tweet.id) {
+                self.present(
+                    TweetDetailViewController(viewModel: viewModel),
+                    animated: true,
+                    completion: nil)
+            }
             
         })
         .disposed(by: disposeBag)
