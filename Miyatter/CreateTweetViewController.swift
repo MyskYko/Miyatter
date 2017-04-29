@@ -1,5 +1,5 @@
 //
-//  MakeTweetViewController.swift
+//  CreateTweetViewController.swift
 //  Miyatter
 //
 //  Created by miyasaka on 2017/04/24.
@@ -9,14 +9,13 @@
 import UIKit
 import SnapKit
 import RxSwift
-import RxCocoa
 
-class MakeTweetViewController: UIViewController {
+class CreateTweetViewController: UIViewController {
     
     // MARK: - Properties -
     
     fileprivate let disposeBag = DisposeBag()
-    fileprivate let viewModel: MakeTweetViewModel
+    fileprivate let viewModel: CreateTweetViewModel
     
     
     // MARK: - View -
@@ -44,7 +43,7 @@ class MakeTweetViewController: UIViewController {
     
     fileprivate lazy var submitButton: UIButton = {
         let button = UIButton()
-        button.setTitle("投稿", for: .normal)
+        button.setTitle("ツイート投稿", for: .normal)
         button.titleLabel?.font = UIFont(name: "HiraKakuProN-W3", size: 20)
         button.backgroundColor = UIColor.lightGray
         return button
@@ -53,7 +52,7 @@ class MakeTweetViewController: UIViewController {
     
     // MARK: - Life Cycle Events -
     
-    init(viewModel: MakeTweetViewModel) {
+    init(viewModel: CreateTweetViewModel) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
@@ -120,8 +119,8 @@ class MakeTweetViewController: UIViewController {
     fileprivate func bindView() {
         backButton.rx
             .tap
-            .subscribe(onNext: { [unowned self] in
-                self.dismiss(animated: true, completion: nil)
+            .subscribe(onNext: { [weak self] in
+                self?.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
         

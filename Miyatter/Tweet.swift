@@ -23,6 +23,7 @@ class Tweet: Object {
         return ["id"]
     }
     
+    /// call in write transaction
     func setId() {
         let realm = try! Realm()
         if let lastTweet = realm.objects(Tweet.self).sorted(byKeyPath: "id", ascending: true).last {

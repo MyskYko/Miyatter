@@ -9,7 +9,6 @@
 import UIKit
 import SnapKit
 import RxSwift
-import RxCocoa
 
 class TimeLineViewController: UIViewController {
     
@@ -103,15 +102,30 @@ class TimeLineViewController: UIViewController {
     fileprivate func bindView() {
         tweetButton.rx
             .tap
-            .subscribe(onNext: { [weak self] in
-                self?.present(MakeTweetViewController(viewModel: MakeTweetViewModel()), animated: true, completion: nil)
+            .subscribe(onNext: { [unowned self] in
+                self.present(
+                    CreateTweetViewController(viewModel: CreateTweetViewModel()),
+                    animated: true,
+                    completion: nil)
             })
             .disposed(by: disposeBag)
         
-        viewModel.tweetVariable.asObservable()
+        viewModel.tweetsVariable.asObservable()
             .bind(to: tableView.rx.items(cellIdentifier: "TweetCell", cellType: TweetCell.self)) { index, tweet, cell in
                 cell.update(tweet: tweet)
         }
+        .disposed(by: disposeBag)
+        
+        tableView.rx.itemSelected.subscribe(onNext: { [unowned self] IndexPath in
+            let tweet = self.viewModel.tweetsVariable.value[IndexPath.row]
+            if let viewModel = TweetDetailViewModel(tweetId: tweet.id) {
+                self.present(
+                    TweetDetailViewController(viewModel: viewModel),
+                    animated: true,
+                    completion: nil)
+            }
+            
+        })
         .disposed(by: disposeBag)
     }
 }
