@@ -45,6 +45,7 @@ class TweetDetailViewController: UIViewController {
         table.register(CommentCell.self, forCellReuseIdentifier: "CommentCell")
         table.estimatedRowHeight = 40
         table.rowHeight = UITableViewAutomaticDimension
+        table.allowsSelection = false
         table.dataSource = self
         return table
     }()

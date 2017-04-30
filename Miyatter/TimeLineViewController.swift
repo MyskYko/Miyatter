@@ -119,23 +119,6 @@ class TimeLineViewController: UIViewController {
                 self?.tableView.reloadData()
             })
             .disposed(by: disposeBag)
-        /*
-         viewModel.tweetsVariable.asObservable()
-         .bind(to: tableView.rx.items(cellIdentifier: "TweetCell", cellType: TweetCell.self)) { index, tweet, cell in
-         cell.update(tweet: tweet)
-         }
-         .disposed(by: disposeBag)
-         
-         tableView.rx.itemSelected.subscribe(onNext: { [unowned self] IndexPath in
-            let tweet = self.viewModel.tweetsVariable.value[IndexPath.row]
-            if let viewModel = TweetDetailViewModel(tweetId: tweet.id) {
-                self.navigationController?.pushViewController(
-                    TweetDetailViewController(viewModel: viewModel),
-                    animated: true)
-            }
-            self.tableView.deselectRow(at: IndexPath, animated: false)
-        })
-        .disposed(by: disposeBag)*/
     }
 }
 
@@ -171,10 +154,10 @@ extension TimeLineViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let tweet = self.viewModel.tweetsVariable.value[indexPath.row]
         if let viewModel = TweetDetailViewModel(tweetId: tweet.id) {
-            self.present(
+            self.navigationController?.pushViewController(
                 TweetDetailViewController(viewModel: viewModel),
-                animated: true,
-                completion: nil)
+                animated: true)
         }
+        self.tableView.deselectRow(at: indexPath, animated: false)
     }
 }
