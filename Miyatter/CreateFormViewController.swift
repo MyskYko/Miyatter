@@ -43,6 +43,7 @@ class CreateFormViewController: UIViewController {
     
     fileprivate lazy var submitButton: UIButton = {
         let button = UIButton()
+        button.setTitle(self.viewModel.buttonTitle, for: .normal)
         button.titleLabel?.font = UIFont(name: "HiraKakuProN-W3", size: 20)
         button.backgroundColor = UIColor.lightGray
         return button
@@ -82,8 +83,6 @@ class CreateFormViewController: UIViewController {
         headerView.addSubview(backButton)
         view.addSubview(formTextView)
         view.addSubview(submitButton)
-        
-        submitButton.setTitle(viewModel.buttonTitle, for: .normal)
     }
     
     
