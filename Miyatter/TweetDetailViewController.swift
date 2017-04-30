@@ -171,4 +171,18 @@ extension TweetDetailViewController: UITableViewDataSource {
             return cell
         }
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == 0 {
+            return false
+        }
+        else {
+            return true
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let commentId = viewModel.tweetVariable.value.comments[indexPath.row].id
+        viewModel.delete(commentId: commentId)
+    }
 }

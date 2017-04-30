@@ -35,4 +35,15 @@ final class TweetDetailViewModel {
     deinit {
         commentingTweetToken?.stop()
     }
+    
+    
+    // MARK: - Object Edit Func -
+    
+    func delete(commentId: Int) {
+        let realm = try! Realm()
+        guard let comment = realm.object(ofType: Comment.self, forPrimaryKey: commentId) else { return }
+        try! realm.write {
+            realm.delete(comment)
+        }
+    }
 }
