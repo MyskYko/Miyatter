@@ -10,21 +10,24 @@ import Foundation
 import RealmSwift
 import RxSwift
 
-final class CreateCommentViewModel {
+final class CreateCommentViewModel: CreateFormViewModel {
+    
     // MARK: - Properties -
     
-    fileprivate let disposeBag = DisposeBag()
+    let disposeBag:DisposeBag = DisposeBag()
+    
+    let buttonTitle = "コメント投稿"
     
     
     // MARK: - Inputs -
     
-    var submitComment = PublishSubject<String>()
+    let submitForm = PublishSubject<String>()
     
     
     // MARK: - Initializers -
     
     init(tweetId: Int) {
-        submitComment
+        submitForm
             .subscribe(onNext: { (text) in
                 let realm = try! Realm()
                 try! realm.write() {

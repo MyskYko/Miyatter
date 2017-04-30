@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import RxSwift
+import RxCocoa
 
 class TimeLineViewController: UIViewController {
     
@@ -106,7 +107,7 @@ class TimeLineViewController: UIViewController {
             .tap
             .subscribe(onNext: { [unowned self] in
                 self.present(
-                    CreateTweetViewController(viewModel: CreateTweetViewModel()),
+                    CreateFormViewController(viewModel: CreateTweetViewModel()),
                     animated: true,
                     completion: nil)
             })
@@ -128,11 +129,11 @@ class TimeLineViewController: UIViewController {
          tableView.rx.itemSelected.subscribe(onNext: { [unowned self] IndexPath in
             let tweet = self.viewModel.tweetsVariable.value[IndexPath.row]
             if let viewModel = TweetDetailViewModel(tweetId: tweet.id) {
-                self.present(
+                self.navigationController?.pushViewController(
                     TweetDetailViewController(viewModel: viewModel),
-                    animated: true,
-                    completion: nil)
+                    animated: true)
             }
+            self.tableView.deselectRow(at: IndexPath, animated: false)
         })
         .disposed(by: disposeBag)*/
     }

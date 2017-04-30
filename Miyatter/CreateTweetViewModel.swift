@@ -10,23 +10,26 @@ import Foundation
 import RealmSwift
 import RxSwift
 
-final class CreateTweetViewModel {
+final class CreateTweetViewModel: CreateFormViewModel {
     
     // MARK: - Properties -
 
-    fileprivate let disposeBag = DisposeBag()
+    let disposeBag =  DisposeBag()
+    
+    let buttonTitle = "ツイート投稿"
     
     
     // MARK: - Inputs -
     
-    var submitTweet = PublishSubject<String>()
+    let submitForm = PublishSubject<String>()
     
     
     // MARK: - Initializers -
     
     init() {
-        submitTweet
+        submitForm
             .subscribe(onNext: { (text) in
+                print("tweet submittion")
                 let realm = try! Realm()
                 try! realm.write() {
                     let tweet = Tweet()
