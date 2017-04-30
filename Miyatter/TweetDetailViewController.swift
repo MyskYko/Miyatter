@@ -45,6 +45,7 @@ class TweetDetailViewController: UIViewController {
         table.register(CommentCell.self, forCellReuseIdentifier: "CommentCell")
         table.estimatedRowHeight = 40
         table.rowHeight = UITableViewAutomaticDimension
+        table.allowsSelection = false
         table.dataSource = self
         return table
     }()
@@ -170,5 +171,19 @@ extension TweetDetailViewController: UITableViewDataSource {
             cell.update(comment: viewModel.tweetVariable.value.comments[indexPath.row])
             return cell
         }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == 0 {
+            return false
+        }
+        else {
+            return true
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let commentId = viewModel.tweetVariable.value.comments[indexPath.row].id
+        viewModel.delete(commentId: commentId)
     }
 }

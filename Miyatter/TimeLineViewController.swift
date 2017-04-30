@@ -39,6 +39,8 @@ class TimeLineViewController: UIViewController {
         table.register(TweetCell.self, forCellReuseIdentifier: "TweetCell")
         table.estimatedRowHeight = 40
         table.rowHeight = UITableViewAutomaticDimension
+        table.dataSource = self
+        table.delegate = self
         return table
     }()
     
@@ -65,6 +67,9 @@ class TimeLineViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: true)
+        if let selectedRow = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selectedRow, animated: true)
+        }
     }
     
     
@@ -111,21 +116,51 @@ class TimeLineViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+
         viewModel.tweetsVariable.asObservable()
-            .bind(to: tableView.rx.items(cellIdentifier: "TweetCell", cellType: TweetCell.self)) { index, tweet, cell in
-                cell.update(tweet: tweet)
+            .subscribe(onNext: { [weak self] tweets in
+                self?.tableView.reloadData()
+            })
+            .disposed(by: disposeBag)
+    }
+}
+
+
+// MARK: - TableViewDataSource -
+
+extension TimeLineViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.tweetsVariable.value.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell") as! TweetCell
+        cell.update(tweet: viewModel.tweetsVariable.value[indexPath.row])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let tweetId = viewModel.tweetsVariable.value[indexPath.row].id
+        viewModel.delete(tweetId: tweetId)
+    }
+}
+
+
+// MARK: - TableViewDelegate -
+
+extension TimeLineViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let tweet = viewModel.tweetsVariable.value[indexPath.row]
+        if let viewModel = TweetDetailViewModel(tweetId: tweet.id) {
+            navigationController?.pushViewController(
+                TweetDetailViewController(viewModel: viewModel),
+                animated: true)
         }
-        .disposed(by: disposeBag)
-        
-        tableView.rx.itemSelected.subscribe(onNext: { [unowned self] IndexPath in
-            let tweet = self.viewModel.tweetsVariable.value[IndexPath.row]
-            if let viewModel = TweetDetailViewModel(tweetId: tweet.id) {
-                self.navigationController?.pushViewController(
-                    TweetDetailViewController(viewModel: viewModel),
-                    animated: true)
-            }
-            self.tableView.deselectRow(at: IndexPath, animated: false)
-        })
-        .disposed(by: disposeBag)
     }
 }
