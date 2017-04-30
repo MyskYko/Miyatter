@@ -1,8 +1,8 @@
 //
-//  CreateTweetViewController.swift
+//  CreateFormViewController.swift
 //  Miyatter
 //
-//  Created by miyasaka on 2017/04/24.
+//  Created by miyasaka on 2017/04/29.
 //  Copyright © 2017年 miyacc. All rights reserved.
 //
 
@@ -10,12 +10,12 @@ import UIKit
 import SnapKit
 import RxSwift
 
-class CreateTweetViewController: UIViewController {
+class CreateFormViewController: UIViewController {
     
     // MARK: - Properties -
     
     fileprivate let disposeBag = DisposeBag()
-    fileprivate let viewModel: CreateTweetViewModel
+    fileprivate let viewModel: CreateFormViewModel
     
     
     // MARK: - View -
@@ -26,7 +26,7 @@ class CreateTweetViewController: UIViewController {
         return view
     }()
     
-    fileprivate lazy var tweetTextView: UITextView = {
+    fileprivate lazy var formTextView: UITextView = {
         let text = UITextView()
         text.layer.borderColor = UIColor.darkGray.cgColor
         text.layer.borderWidth = 1
@@ -43,7 +43,7 @@ class CreateTweetViewController: UIViewController {
     
     fileprivate lazy var submitButton: UIButton = {
         let button = UIButton()
-        button.setTitle("ツイート投稿", for: .normal)
+        button.setTitle(self.viewModel.buttonTitle, for: .normal)
         button.titleLabel?.font = UIFont(name: "HiraKakuProN-W3", size: 20)
         button.backgroundColor = UIColor.lightGray
         return button
@@ -52,7 +52,7 @@ class CreateTweetViewController: UIViewController {
     
     // MARK: - Life Cycle Events -
     
-    init(viewModel: CreateTweetViewModel) {
+    init(viewModel: CreateFormViewModel) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
@@ -76,12 +76,12 @@ class CreateTweetViewController: UIViewController {
     
     
     // MARK: - Set Up Views -
-
+    
     fileprivate func setUpView() {
         view.backgroundColor = UIColor.white
         view.addSubview(headerView)
         headerView.addSubview(backButton)
-        view.addSubview(tweetTextView)
+        view.addSubview(formTextView)
         view.addSubview(submitButton)
     }
     
@@ -100,14 +100,14 @@ class CreateTweetViewController: UIViewController {
             make.height.equalTo(22)
         }
         
-        tweetTextView.snp.remakeConstraints { (make) in
+        formTextView.snp.remakeConstraints { (make) in
             make.top.equalTo(headerView.snp.bottom).inset(-20)
             make.left.right.equalTo(view).inset(16)
             make.height.equalTo(200)
         }
         
         submitButton.snp.remakeConstraints { (make) in
-            make.top.equalTo(tweetTextView.snp.bottom).inset(-8)
+            make.top.equalTo(formTextView.snp.bottom).inset(-8)
             make.left.right.equalTo(view).inset(16)
             make.height.equalTo(32)
         }
@@ -127,7 +127,7 @@ class CreateTweetViewController: UIViewController {
         submitButton.rx
             .tap
             .subscribe(onNext: { [unowned self] in
-                self.viewModel.submitTweet.onNext(self.tweetTextView.text)
+                self.viewModel.submitForm.onNext(self.formTextView.text)
                 self.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
