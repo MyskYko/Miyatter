@@ -119,9 +119,9 @@ class TweetDetailViewController: UIViewController {
         commentButton.rx
             .tap
             .subscribe(onNext: { [unowned self] in
-                let viewModel = CreatePostViewModel(tweetId: self.viewModel.tweetVariable.value.id)
+                let viewModel = CreateCommentViewModel(tweetId: self.viewModel.tweetVariable.value.id)
                 self.present(
-                    CreatePostViewController(viewModel: viewModel),
+                    CreateFormViewController(viewModel: viewModel),
                     animated: true,
                     completion: nil)
             })

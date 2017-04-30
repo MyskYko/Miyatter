@@ -105,7 +105,7 @@ class TimeLineViewController: UIViewController {
             .tap
             .subscribe(onNext: { [unowned self] in
                 self.present(
-                    CreatePostViewController(viewModel: CreatePostViewModel()),
+                    CreateFormViewController(viewModel: CreateTweetViewModel()),
                     animated: true,
                     completion: nil)
             })

@@ -1,5 +1,5 @@
 //
-//  CreatePostViewController.swift
+//  CreateFormViewController.swift
 //  Miyatter
 //
 //  Created by miyasaka on 2017/04/29.
@@ -10,12 +10,12 @@ import UIKit
 import SnapKit
 import RxSwift
 
-class CreatePostViewController: UIViewController {
+class CreateFormViewController: UIViewController {
     
     // MARK: - Properties -
     
     fileprivate let disposeBag = DisposeBag()
-    fileprivate let viewModel: CreatePostViewModel
+    fileprivate let viewModel: CreateFormViewModel
     
     
     // MARK: - View -
@@ -26,7 +26,7 @@ class CreatePostViewController: UIViewController {
         return view
     }()
     
-    fileprivate lazy var postTextView: UITextView = {
+    fileprivate lazy var formTextView: UITextView = {
         let text = UITextView()
         text.layer.borderColor = UIColor.darkGray.cgColor
         text.layer.borderWidth = 1
@@ -51,7 +51,7 @@ class CreatePostViewController: UIViewController {
     
     // MARK: - Life Cycle Events -
     
-    init(viewModel: CreatePostViewModel) {
+    init(viewModel: CreateFormViewModel) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
@@ -80,17 +80,10 @@ class CreatePostViewController: UIViewController {
         view.backgroundColor = UIColor.white
         view.addSubview(headerView)
         headerView.addSubview(backButton)
-        view.addSubview(postTextView)
+        view.addSubview(formTextView)
         view.addSubview(submitButton)
         
-        switch viewModel.postType {
-        case .tweet:
-            submitButton.setTitle("ツイート投稿", for: .normal)
-            break
-        case .comment:
-            submitButton.setTitle("コメント投稿", for: .normal)
-            break
-        }
+        submitButton.setTitle(viewModel.buttonTitle, for: .normal)
     }
     
     
@@ -108,14 +101,14 @@ class CreatePostViewController: UIViewController {
             make.height.equalTo(22)
         }
         
-        postTextView.snp.remakeConstraints { (make) in
+        formTextView.snp.remakeConstraints { (make) in
             make.top.equalTo(headerView.snp.bottom).inset(-20)
             make.left.right.equalTo(view).inset(16)
             make.height.equalTo(200)
         }
         
         submitButton.snp.remakeConstraints { (make) in
-            make.top.equalTo(postTextView.snp.bottom).inset(-8)
+            make.top.equalTo(formTextView.snp.bottom).inset(-8)
             make.left.right.equalTo(view).inset(16)
             make.height.equalTo(32)
         }
@@ -135,7 +128,7 @@ class CreatePostViewController: UIViewController {
         submitButton.rx
             .tap
             .subscribe(onNext: { [unowned self] in
-                self.viewModel.submitPost.onNext(self.postTextView.text)
+                self.viewModel.submitForm.onNext(self.formTextView.text)
                 self.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
