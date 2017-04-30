@@ -1,5 +1,5 @@
 //
-//  CreateCommentViewModel.swift
+//  CreatePostViewModel.swift
 //  Miyatter
 //
 //  Created by miyasaka on 2017/04/29.
@@ -10,21 +10,44 @@ import Foundation
 import RealmSwift
 import RxSwift
 
-final class CreateCommentViewModel {
+enum PostType: Int {
+    case tweet = 1
+    case comment = 2
+}
+
+class CreatePostViewModel {
+    
     // MARK: - Properties -
     
     fileprivate let disposeBag = DisposeBag()
+    let postType: PostType
     
     
     // MARK: - Inputs -
     
-    var submitComment = PublishSubject<String>()
+    var submitPost = PublishSubject<String>()
     
     
     // MARK: - Initializers -
     
+    init() {
+        postType = .tweet
+        submitPost
+            .subscribe(onNext: { (text) in
+                let realm = try! Realm()
+                try! realm.write() {
+                    let tweet = Tweet()
+                    tweet.content = text
+                    tweet.setId()
+                    realm.add(tweet)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
     init(tweetId: Int) {
-        submitComment
+        postType = .comment
+        submitPost
             .subscribe(onNext: { (text) in
                 let realm = try! Realm()
                 try! realm.write() {

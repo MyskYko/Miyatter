@@ -119,9 +119,9 @@ class TweetDetailViewController: UIViewController {
         commentButton.rx
             .tap
             .subscribe(onNext: { [unowned self] in
-                let viewModel = CreateCommentViewModel(tweetId: self.viewModel.tweetVariable.value.id)
+                let viewModel = CreatePostViewModel(tweetId: self.viewModel.tweetVariable.value.id)
                 self.present(
-                    CreateCommentViewController(viewModel: viewModel),
+                    CreatePostViewController(viewModel: viewModel),
                     animated: true,
                     completion: nil)
             })
@@ -130,7 +130,7 @@ class TweetDetailViewController: UIViewController {
         backButton.rx
             .tap
             .subscribe(onNext: { [weak self] in
-                self?.dismiss(animated: true, completion: nil)
+                _ = self?.navigationController?.popViewController(animated: true)
             })
             .disposed(by: disposeBag)
         
