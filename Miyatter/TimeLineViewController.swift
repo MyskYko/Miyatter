@@ -67,6 +67,9 @@ class TimeLineViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: true)
+        if let selectedRow = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selectedRow, animated: true)
+        }
     }
     
     
@@ -158,6 +161,5 @@ extension TimeLineViewController: UITableViewDelegate {
                 TweetDetailViewController(viewModel: viewModel),
                 animated: true)
         }
-        self.tableView.deselectRow(at: indexPath, animated: false)
     }
 }

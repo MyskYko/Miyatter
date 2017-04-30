@@ -38,7 +38,9 @@ final class TimeLineViewModel {
     
     func delete(tweetId: Int) {
         let realm = try! Realm()
-        guard let tweet = realm.object(ofType: Tweet.self, forPrimaryKey: tweetId) else { return }
+        guard let tweet = realm.object(ofType: Tweet.self, forPrimaryKey: tweetId) else {
+            return
+        }
         try! realm.write {
             for comment in tweet.comments {
                 realm.delete(comment)
